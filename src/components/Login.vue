@@ -15,6 +15,8 @@
 }
 img{
     margin: 30px;
+    width: 60%;
+    max-width: 300px;
 }
 form{
     flex: 5;
