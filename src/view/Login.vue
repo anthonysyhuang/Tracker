@@ -25,6 +25,7 @@ form{
     margin: auto;
     width: 60%;
     text-align: left;
+    position: relative;
 }
 .wrap{
     width: 100%;
@@ -63,6 +64,22 @@ input[type=submit]{
     font-size: 0.6em;
     top: -10px;
 }
+.error-box{
+    text-align: center;
+    font-size: 0.8em;
+    color: #d20000;
+    transition: 0.3s ease;
+    position: absolute;
+    left: 50%;
+    top: -10px;
+    transform: translate(-50%,-5px);
+    height: 0;
+    overflow: hidden;
+    width: 100%;
+}
+.error-box-show{
+    height: 20px;
+}
 </style>
 
 <template>
@@ -71,27 +88,34 @@ input[type=submit]{
             <img src="../assets/img/logo.png">
         </div>
         <form @submit.prevent="submit">
+            <div class="error-box" :class="{'error-box-show': errorText != null}">
+                {{ errorText }}
+            </div>
             <div class="wrap">
-                <label :class="{'label-focused': userNameClassObject.isFocused || user.id}" >Username</label>
+                <label :class="{'label-focused': userNameIsFocused}" >Username</label>
                 <input type="text" v-model="user.id"
                        @focus="toggleFocus(userNameClassObject)"
                        @blur="toggleFocus(userNameClassObject)">
             </div>
             <div class="wrap">
-                <label :class="{'label-focused': passwordClassObject.isFocused || user.password}">Password</label>
+                <label :class="{'label-focused': PasswordIsFocused}">Password</label>
                 <input type="password" v-model="user.password"
                        @focus="toggleFocus(passwordClassObject)"
                        @blur="toggleFocus(passwordClassObject)">
             </div>
             <input type="submit" value="Login">
         </form>
+        <BottomNav></BottomNav>
     </div>
+    
 </template>
 
 
 
 <script>
+import BottomNav from '@/components/BottomNav'
 import login from '@/utilities/login'
+import ErrorCode from '@/utilities/ErrorCode'
 
 export default {
     name: 'Login',
@@ -106,17 +130,31 @@ export default {
             },
             passwordClassObject: {
                 isFocused: false
-            }
+            },
+            errorText: null
+        }
+    },
+    computed: {
+        userNameIsFocused: function(){
+            return this.userNameClassObject.isFocused || this.user.id;
+        },
+        PasswordIsFocused: function(){
+            return this.passwordClassObject.isFocused || this.user.password;
         }
     },
     methods: {
         submit: function(event){
-            if(login.login(this.user.id, this.user.password)){
-                this.$router.push('/logout');
+            let error = login.login(this.user.id, this.user.password);
+            if(error === ErrorCode.LOGIN_SUCCESS){
+                this.$router.push('/home');
+            }
+            else{
+                this.errorText = error.text;
             }
         },
         toggleFocus: function(classObject){
             classObject.isFocused = !classObject.isFocused;
+            this.errorText = null;
         },
         
     } 
