@@ -1,4 +1,4 @@
-import localStorage from './localStorage';
+import localStorage from '@/utilities/localStorage';
 import ErrorCode from './ErrorCode';
 
 const _LOGINED = 'LOGINED';

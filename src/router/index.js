@@ -4,6 +4,8 @@ import Login from '@/view/Login'
 import Blank from '@/view/Blank'
 import Home from '@/view/Home'
 import login from '@/utilities/login'
+import List from '@/view/List'
+
 Vue.use(Router)
 
 const routers =  new Router({
@@ -14,8 +16,9 @@ const routers =  new Router({
       name: 'login',
       component: Login,
       beforeEnter: (to, from, next) => {
-        if(login.isLogined())
+        if(login.isLogined()){
           next('/home');
+        }
         else
           next();
       }
@@ -24,6 +27,11 @@ const routers =  new Router({
       path: '/home',
       name: 'home',
       component: Home
+    },
+    {
+      path: '/list',
+      name: 'list',
+      component: List
     },
     {
       path: '/logout',
@@ -42,6 +50,11 @@ const routers =  new Router({
 routers.beforeEach((to, from, next) => {
   if(to.matched.length == 0){
     next('/login');
+  }
+
+  if(to.name != 'login' && !login.isLogined()){
+    console.log("not login");
+    next('/login');    
   }
   else
     next();

@@ -1,8 +1,6 @@
 <style scoped>
-.container{
-    position: fixed;
+.BottomNav{
     width: 100%;
-    bottom: 0;
     background-color: gray;
 }
 ul{
@@ -10,11 +8,17 @@ ul{
     list-style: none;
     text-align: center;
     padding: 0;
-
-    
+    margin: 0;
+    height: 2.5em;
+}
+a{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
 }
 li{
-    flex: 1;
     color: white;
 }
 .active{
@@ -24,18 +28,25 @@ li{
 
 
 <template>
-    <div class="container">
+    <section class="BottomNav">
         <ul>
-            <li :class="{'active': parentName == 'Home'}">Home</li>
-            <li>List</li>
-            <li>Profile</li>
+            <router-link :to="{ name: 'home'}"><li :class="{'active': isHome}">Home</li></router-link>
+            <router-link :to="{ name: 'list'}"><li :class="{'active': isList}">List</li></router-link>
+            <router-link :to="{ name: 'profile'}"><li :class="{'active': isProfile}">Profile</li></router-link>
         </ul>
-    </div>
+    </section>
 </template>
 
 <script>
+import utilities from '@/utilities/utilities'
+
 export default {
     name: 'BottomNav',
-    props:['parentName'],
+    props:['parent'],
+    computed:{
+        isHome: function(){ return this.parent === utilities.VIEWNAME.HOME},
+        isList: function(){ return this.parent === utilities.VIEWNAME.LIST},
+        isProfile: function(){ return this.parent === utilities.VIEWNAME.PROFILE}
+    }
 }
 </script>
