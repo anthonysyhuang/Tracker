@@ -105,7 +105,6 @@ input[type=submit]{
             </div>
             <input type="submit" value="Login">
         </form>
-        <BottomNav></BottomNav>
     </div>
     
 </template>
@@ -113,7 +112,6 @@ input[type=submit]{
 
 
 <script>
-import BottomNav from '@/components/BottomNav'
 import login from '@/utilities/login'
 import ErrorCode from '@/utilities/ErrorCode'
 

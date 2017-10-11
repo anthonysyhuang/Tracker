@@ -14,7 +14,6 @@
     overflow: auto;
 }
 img{
-    width: 100%;
     display: block;
 }
 </style>
@@ -25,7 +24,7 @@ img{
                    :titleAlign="headerData.titleAlign" :hasRightBtn="headerData.hasRight"
                    @onLeftBtnClick="goBack()"></HeaderNav>
         <section class="Home">
-            <img src="http://via.placeholder.com/350x1000">
+            <img src="http://via.placeholder.com/3500x3500">
         </section>
         <BottomNav :parent="viewName"></BottomNav>
     </div>
