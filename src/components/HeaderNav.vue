@@ -4,10 +4,10 @@ ul{
     padding: 0;
     display: flex;
     list-style-type: none;
-    height: 2.5em;
+    height: 3em;
     justify-content: center;
     align-items: center;
-    background-color: black;
+    background-color: #3D5652;
 }
 li{
     flex: 5;
@@ -40,9 +40,9 @@ button{
 <template>
   <header class="HeaderNav">
     <ul>
-        <li class="side-btn"><button @click="onLeftBtnClick()">{{ leftBtnText }}</button></li>
+        <li class="side-btn"><button v-if="hasLeftBtn" @click="onLeftBtnClick()">{{ leftBtnText }}</button></li>
         <li class="title" :class="align">{{ title }}</li>
-        <li class="side-btn"><button @click="onRightBtnClick()">{{ rightBtnText }}</button></li>
+        <li class="side-btn"><button v-if="hasRightBtn" @click="onRightBtnClick()">{{ rightBtnText }}</button></li>
     </ul>
   </header>
 </template>
@@ -71,9 +71,12 @@ export default {
   },
   computed:{
       align: function(){
+          //Default Align
+          if(!this.titleAlign) return "center-align";
+
+          if(this.titleAlign === this.$options.CONFIG.CENTER) return "center-align";
           if(this.titleAlign === this.$options.CONFIG.LIFT) return "left-align";
-          if(this.titleAlign === this.$options.CONFIG.RIGHT) return "right-align";
-          if(this.titleAlign === this.$options.CONFIG.CENTER) return "center-align";          
+          if(this.titleAlign === this.$options.CONFIG.RIGHT) return "right-align";   
       }
   },
   CONFIG: {

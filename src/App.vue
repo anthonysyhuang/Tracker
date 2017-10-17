@@ -28,6 +28,7 @@ export default {
 }
 </script>
 <style src="./assets/css/theme.css" lang="css"></style>
+<style src="./assets/css/iconfont.css" lang="css"></style>
 <style>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;

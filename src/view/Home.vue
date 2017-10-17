@@ -1,16 +1,15 @@
 
 <style scoped>
 .HeaderNav{
-    height: 2.5em;
+    height: 3em;
     width: 100%;
 }
 .BottomNav{
-    position: fixed;
-    height: 2.5em;
+    height: 3em;
     bottom: 0;
 }
 .Home{
-    height: calc(100vh - 5em);
+    height: calc(100vh - 6em);
     overflow: auto;
 }
 img{
@@ -24,7 +23,7 @@ img{
                    :titleAlign="headerData.titleAlign" :hasRightBtn="headerData.hasRight"
                    @onLeftBtnClick="goBack()"></HeaderNav>
         <section class="Home">
-            <img src="http://via.placeholder.com/3500x3500">
+            <img src="../assets/img/map.png">
         </section>
         <BottomNav :parent="viewName"></BottomNav>
     </div>

@@ -1,6 +1,6 @@
 <style scoped>
     .main{
-        height: calc(100vh - 5em);
+        height: calc(100vh - 6em);
         overflow: auto;
     }
     .top-half{
@@ -11,7 +11,10 @@
     }
     .top-half>img{
         object-fit: contain;
-        margin: 40px 0 10px 0;
+        margin: 40px auto 10px auto;
+        height: 150px;
+        width: 150px;
+        border-radius: 75px;
     }
     .top-half>h1{
         font-size: 2em;
@@ -45,9 +48,10 @@
     label{
         text-align: left;
         color: black;
+        font-size: 0.8em;
     }
     span{
-        font-size: 1.3em;
+        font-size: 1em;
     }
     .bottom-half{
         background-color: #f3f3f3;
@@ -63,21 +67,56 @@
     }
     .logout>button{
         border: none;
-        background-color: gray;
+        background-color: #091221;
         color: white;
         font-size: 1em;
         padding: 10px 20px;
+        width: 80%;
+    }
+    #change-name{
+        font-size: 2em;
+        text-align: center;
+        border: none;
+        border-bottom: solid 1px gray;
+        margin: 1em 0;
+    }
+    .input-box{
+        position: relative;
+        padding-top: 10px;
+    }
+    .input-box>label{
+        position: absolute;
+        top: 0;
+        left: 20px;
+        color: gray;
+    }
+    #change-bio{
+        width: 80%;
+        margin: 10px auto;
+        resize: none;
     }
 </style>
 <template>
   <section>
     <HeaderNav :title="headerData.title" :titleAlign="headerData.titleAlign"
-               :hasRightBtn="headerData.hasRightBtn" :rightBtnText="headerData.rightBtnText"></HeaderNav>
+               :hasRightBtn="headerData.hasRightBtn" :rightBtnText="headerData.rightBtnText"
+               :hasLeftBtn="headerData.hasLeftBtn" :leftBtnText="headerData.leftBtnText"
+               @onRightBtnClick="onRgBtnClick()" @onLeftBtnClick="onLfBtnClick()"></HeaderNav>
     <section class="main">
         <div class="top-half">
-            <img src="http://via.placeholder.com/150x150">
-            <h1>{{ user.name }}</h1>
-            <p>{{ user.quote }}</p>
+            <img src="../assets/img/p.jpg">
+            <h1 v-if="!editMood">{{ user.name }}</h1>
+            <div class="input-box" v-if="editMood">
+                <label>Name</label>
+                <input type="text" v-model="userUnSave.name" id="change-name">
+            </div>
+            
+            <p v-if="!editMood">{{ user.quote }}</p>
+            <div class="input-box" v-if="editMood">
+                <label>Bio</label>
+                <textarea v-model="userUnSave.quote" id="change-bio" rows="3">
+                </textarea>
+            </div>
         </div>
         <div class="bottom-half">
             <div class="card">
@@ -100,11 +139,11 @@
                 <div class="row border-top-solid">
                     <div class="half border-right-solid">
                     <label>Saved</label>
-                    <span>{{ user.saved }}</span>
+                    <span>{{ user.saved.length }}</span>
                     </div>
                     <div class="half">
                         <label>Added</label>
-                        <span>{{ user.added }}</span>
+                        <span>{{ user.added.length }}</span>
                     </div>
                 </div>
             </div>
@@ -135,16 +174,44 @@ export default {
               title: 'Profile',
               titleAlign: HeaderNav.CONFIG.CENTER,
               hasRightBtn: true,
-              rightBtnText: 'Edit'
+              rightBtnText: 'Edit',
+              hasLeftBtn: false,
+              leftBtnText: 'Cancel'
           },
-          user: mock.user
+          user: mock.user,
+          userUnSave: Object.assign({}, mock.user),
+          editMood: false
       }
   },
   methods:{
     logout: function(){
         login.logout();
-        this.$router.push('/home');
-    }  
+        this.$router.push({ name: 'login'});
+    },
+    onRgBtnClick: function(){
+        if(this.editMood){
+            //Done
+            this.editMood = false;
+            this.headerData.rightBtnText = 'Edit';
+            this.headerData.hasLeftBtn = false;
+
+            this.user = Object.assign({}, this.userUnSave);
+        }
+        else{
+            //Edit
+            this.editMood = true;
+            this.headerData.rightBtnText = 'Done';
+            this.headerData.hasLeftBtn = true;
+        }
+    },
+    onLfBtnClick: function(){
+        //Cancel
+        this.editMood = false;
+        this.headerData.rightBtnText = 'Edit';
+        this.headerData.hasLeftBtn = false;
+
+        this.userUnSave = Object.assign({}, this.user);
+    }
   },
   computed:{
       ViewName: function(){ return utilities.VIEWNAME.PROFILE; },

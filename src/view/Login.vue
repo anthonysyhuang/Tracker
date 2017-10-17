@@ -52,7 +52,7 @@ form{
     line-height: 1.5em;
 }
 input[type=submit]{
-    margin: 10px 0;
+    margin: 20px 0;
     border: none;
     background-color: antiquewhite;
     height: 35px;
@@ -144,7 +144,7 @@ export default {
         submit: function(event){
             let error = login.login(this.user.id, this.user.password);
             if(error === ErrorCode.LOGIN_SUCCESS){
-                this.$router.push('/home');
+                this.$router.push({ name: 'home'});
             }
             else{
                 this.errorText = error.text;

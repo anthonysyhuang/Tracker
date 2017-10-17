@@ -6,7 +6,7 @@ import Home from '@/view/Home'
 import login from '@/utilities/login'
 import List from '@/view/List'
 import Profile from '@/view/Profile'
-
+import Item from '@/view/Item'
 Vue.use(Router)
 
 function routeGenerator(path, name, component, beforeEnter = null, alias = ''){
@@ -18,24 +18,35 @@ function routeGenerator(path, name, component, beforeEnter = null, alias = ''){
     alias: alias
   }
 }
-
+/********************Before Enter******************************/
 const loginBeforeEnter = function(to, from, next){
   if(login.isLogined())
     next(homeRoute);
   else
     next();
 }
+const itemBeforeEnter = function(to, from, next){
+  if(!to.params.id){
+    return next(from);
+  }
+
+  return next(next);
+}
+
+/******************** Route ******************************/
 const loginRoute = routeGenerator('/login', 'login', Login, loginBeforeEnter, '/');
 const homeRoute = routeGenerator('/home', 'home', Home);
 const listRoute = routeGenerator('/list', 'list', List);
 const profileRoute = routeGenerator('/profile', 'profile', Profile);
+const itemRoute = routeGenerator('/item/:id', 'item', Item, itemBeforeEnter);
 
 const routers =  new Router({
   routes: [
     loginRoute,
     homeRoute,
     listRoute,
-    profileRoute
+    profileRoute,
+    itemRoute
   ]
 })
 

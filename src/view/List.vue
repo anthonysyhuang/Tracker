@@ -1,6 +1,6 @@
 <style scoped>
 .main{
-    height: calc(100vh - 5em);
+    height: calc(100vh - 6em);
     overflow: auto;
 }
 ul{
@@ -8,8 +8,17 @@ ul{
     margin: 0;
 }
 .ProductCmp{
-    width: 50%;
     float: left;
+}
+.filter-section{
+    padding-top: 10px;
+}
+.filter-section>a{
+    margin: 0 10px;
+}
+.filter-active{
+    text-decoration: underline;
+    color: #8E4234;
 }
 </style>
 <template>
@@ -18,8 +27,16 @@ ul{
                  :hasRightBtn="headerData.hasRight"  :rightBtnText="headerData.rightBtnText"
                  @onRightBtnClick="add()"></HeaderNav>
       <section class="main">
+          <div class="filter-section">
+              <a :class="{ 'filter-active': isAcitve(allMode)}" @click="filterActive(allMode)">{{ allMode }}</a>|
+              <a :class="{ 'filter-active': isAcitve(savedMode)}" @click="filterActive(savedMode)">{{ savedMode }}</a>|
+              <a :class="{ 'filter-active': isAcitve(addedMode)}" @click="filterActive(addedMode)">{{ addedMode }}</a>
+          </div>
           <ul>
-              <ProductCmp v-for="product in products" :key="product.id" :product="product"></ProductCmp>
+              <router-link :to="{ name: 'item', params: { id: String(product.id) } }" v-for="product in ProductsList" :key="product.id">
+                  <ProductCmp  :product="product" :isSave="isSaved(product)" @onToggle="toggle(product)"></ProductCmp>
+              </router-link>
+              
           </ul>
       </section>
       <BottomNav :parent="viewName"></BottomNav>
@@ -30,6 +47,7 @@ import BottomNav from '@/components/BottomNav.vue'
 import HeaderNav from '@/components/HeaderNav.vue'
 import utilities from '@/utilities/utilities'
 import ProductCmp from '@/components/ProductCmp.vue'
+import mock from '@/mock/mock.js'
 
 export default {
   name:'List',
@@ -46,23 +64,53 @@ export default {
               hasRight: true,
               rightBtnText: 'Add'
           },
-          products:[
-              { id: 0, title: "A", locationNum: 45},
-              { id: 1, title: "B", locationNum: 25},
-              { id: 2, title: "C", locationNum: 45},
-              { id: 3, title: "D", locationNum: 445},
-              { id: 4, title: "E", locationNum: 495},
-          ],
+          products: mock.products,
+          user: mock.user,
+          allMode: 'All',
+          savedMode: 'Saved',
+          addedMode: 'Added',
+          filterMode: 'All',
       }
   },
   computed:{
       viewName: function(){
           return utilities.VIEWNAME.LIST;
+      },
+      ProductsList: function(){
+        if(this.filterMode == this.allMode)
+            return this.products;
+        else if(this.filterMode == this.savedMode){
+            return this.products.filter( word => {
+                let set = new Set(this.user.saved);
+                return set.has(word.id);
+            })
+        }
+        else if(this.filterMode == this.addedMode){
+            return this.products.filter( word => {
+                let set = new Set(this.user.added);
+                return set.has(word.id);
+            })
+        }
       }
   },
   methods:{
+      filterActive: function(mode){
+          this.filterMode = mode;
+      },
+      isAcitve: function(mode){
+          return this.filterMode == mode;
+      },
       add: function(){
           console.log("add");
+      },
+      isSaved: function(product){
+          return this.user.saved.find( id => { return id == product.id; }) != undefined ? true : false;
+      },
+      toggle: function(product){
+          [].splice
+          let index = this.user.saved.indexOf(product.id);
+          if(index == -1) this.user.saved.push(product.id);
+          else this.user.saved.splice(index, 1);
       }
   }
 }

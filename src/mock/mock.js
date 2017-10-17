@@ -4,10 +4,93 @@ export default{
         username: 'Anthony',
         password: '12345',
         age: 27,
-        saved: 34,
-        added: 20,
-        email: 'AHUANG21.gmail.com',
+        email: 'ahuang21.gmail.com',
         gender: 1,
-        quote: 'Good, better, best. Never let it rest. \'Til your good is better and your better is best.'
-    }
+        quote: 'Good, better, best. Never let it rest. \'Til your good is better and your better is best.',
+        saved: [0, 1, 2],
+        added: [3, 4]
+    },
+    products: [
+        { 
+            id: 0, 
+            title: "SanQing Mt.", 
+            locationNum: 45,
+            imgs:['0_0.jpg'],
+            tags: []
+        },
+        { 
+            id: 1, 
+            title: "The Bund, Shang Hai", 
+            locationNum: 25,
+            imgs:['1_0.jpg'],
+            tags: [
+                {
+                    id:0,
+                    tagText: '#Yolo',
+                    tagNum: 12
+                },
+                {
+                    id:1,
+                    tagText: '#quiet',
+                    tagNum: 3
+                },
+                {
+                    id:2,
+                    tagText: '#chillplaceEver',
+                    tagNum: 20
+                },
+                {
+                    id:3,
+                    tagText: '#justgo',
+                    tagNum: 4
+                },
+                {
+                    id:4,
+                    tagText: '#hithere',
+                    tagNum: 1
+                },
+                {
+                    id:5,
+                    tagText: '#lovely',
+                    tagNum: 12
+                },
+                {
+                    id:6,
+                    tagText: '#gg',
+                    tagNum: 13
+                },
+                {
+                    id:7,
+                    tagText: '#myplace',
+                    tagNum: 12
+                },
+                {
+                    id:8,
+                    tagText: '#feelsgood',
+                    tagNum: 14
+                }
+            ],
+        },
+        {
+            id: 2,
+            title: "Universal Studio",
+            locationNum: 45,
+            imgs:['2_0.jpg'],
+            tags: [],
+        },
+        { 
+            id: 3,
+            title: "Lake Taho",
+            locationNum: 445,
+            imgs:['3_0.jpg'],
+            tags: []
+        },
+        {
+            id: 4,
+            title: "Yerba Buena Gardens",
+            locationNum: 495,
+            imgs:['4_0.jpg', '4_1.jpg'],
+            tags: []
+        },
+    ],
 }
