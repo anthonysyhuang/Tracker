@@ -13,6 +13,7 @@ h2{
     text-align: left;
     margin: 0;
     color: white;
+    font-size: 1.2em;
 }
 span{
     font-size: 14px;

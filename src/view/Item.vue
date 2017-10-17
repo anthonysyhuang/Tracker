@@ -17,7 +17,7 @@
 }
 h1{
     margin: 0;
-    font-size: 2em;
+    font-size: 1em;
     padding: 0 10px;
     text-align: left;
     color: white;
@@ -39,7 +39,7 @@ ul{
     padding: 0;
     list-style: none;
     padding-top: 20px;
-    height: 30%;
+    height: 50vh;
     overflow: auto;
 }
 li{
@@ -79,7 +79,7 @@ li>.vote-result{
     font-size: 0.7em;
 }
 .map-section{
-    height: 30%;
+    height: 50vh;
     overflow: auto;
 }
 .imgs-btn{

@@ -25,7 +25,6 @@
     }
     .row{
         overflow: auto;
-        padding-top: 10px;
     }
     .border-top-solid{
         border-top: solid 2px #f7f7f7;        
