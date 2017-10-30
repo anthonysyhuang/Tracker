@@ -15,59 +15,75 @@ export default{
             id: 0, 
             title: "SanQing Mt.", 
             locationNum: 45,
-            imgs:['0_0.jpg'],
-            tags: []
+            imgs:[
+                { 
+                    id: 0,
+                    path: '0_0.jpg',
+                    tags: []
+                }
+            ]
         },
         { 
             id: 1, 
             title: "The Bund, Shang Hai", 
             locationNum: 25,
-            imgs:['1_0.jpg'],
-            tags: [
-                {
-                    id:0,
-                    tagText: '#Yolo',
-                    tagNum: 12
+            imgs:[
+                { 
+                    id: 0,
+                    path: '1_0.jpg',
+                    tags: [
+                        {
+                            id:0,
+                            tagText: '#Yolo',
+                            tagNum: 12
+                        },
+                        {
+                            id:1,
+                            tagText: '#quiet',
+                            tagNum: 3
+                        },
+                        {
+                            id:2,
+                            tagText: '#chillplaceEver',
+                            tagNum: 20
+                        },
+                        {
+                            id:3,
+                            tagText: '#justgo',
+                            tagNum: 4
+                        }
+                    ]
                 },
                 {
-                    id:1,
-                    tagText: '#quiet',
-                    tagNum: 3
-                },
-                {
-                    id:2,
-                    tagText: '#chillplaceEver',
-                    tagNum: 20
-                },
-                {
-                    id:3,
-                    tagText: '#justgo',
-                    tagNum: 4
-                },
-                {
-                    id:4,
-                    tagText: '#hithere',
-                    tagNum: 1
-                },
-                {
-                    id:5,
-                    tagText: '#lovely',
-                    tagNum: 12
-                },
-                {
-                    id:6,
-                    tagText: '#gg',
-                    tagNum: 13
-                },
-                {
-                    id:7,
-                    tagText: '#myplace',
-                    tagNum: 12
-                },
-                {
-                    id:8,
-                    tagText: '#feelsgood',
-                    tagNum: 14
+                    id: 1,
+                    path: '1_1.jpg',
+                    tags: [
+                        {
+                            id:4,
+                            tagText: '#hithere',
+                            tagNum: 1
+                        },
+                        {
+                            id:5,
+                            tagText: '#lovely',
+                            tagNum: 12
+                        },
+                        {
+                            id:6,
+                            tagText: '#gg',
+                            tagNum: 13
+                        },
+                        {
+                            id:7,
+                            tagText: '#myplace',
+                            tagNum: 12
+                        },
+                        {
+                            id:8,
+                            tagText: '#feelsgood',
+                            tagNum: 14
+                        }
+                    ]
                 }
             ],
         },
@@ -75,22 +91,63 @@ export default{
             id: 2,
             title: "Universal Studio",
             locationNum: 45,
-            imgs:['2_0.jpg'],
-            tags: [],
+            imgs:[
+                {
+                    id: 0,
+                    path: '2_0.jpg',
+                    tags: [],
+                }
+            ]
         },
         { 
             id: 3,
             title: "Lake Taho",
             locationNum: 445,
-            imgs:['3_0.jpg'],
-            tags: []
+            imgs:[
+                {
+                    id: 0,
+                    path: '3_0.jpg',
+                    tags: []
+                }
+            ],
         },
         {
             id: 4,
             title: "Yerba Buena Gardens",
             locationNum: 495,
-            imgs:['4_0.jpg', '4_1.jpg'],
-            tags: []
+            imgs:[
+                {
+                    id: 0,
+                    path: '4_0.jpg',
+                    tags: [
+                        {
+                            id:0,
+                            tagText: '#smile',
+                            tagNum: 2
+                        },
+                        {
+                            id:1,
+                            tagText: '#laugh',
+                            tagNum: 3
+                        }
+                    ]
+                },
+                {
+                    id: 1,
+                    path: '4_1.jpg',
+                    tags: []
+                },
+                {
+                    id: 2,
+                    path: '4_0.jpg',
+                    tags: []
+                },
+                {
+                    id: 3,
+                    path: '4_1.jpg',
+                    tags: []
+                }
+            ]
         },
     ],
 }

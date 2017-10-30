@@ -74,6 +74,8 @@ span{
 </template>
 
 <script>
+import utilities from '@/utilities/utilities.js'
+
 export default {
   name: 'ProductCmp',
   props: {
@@ -83,9 +85,9 @@ export default {
   computed:{
       ImgPath: function(){
           if(this.product.imgs.length == 0)
-            return 'http://via.placeholder.com/350x350';
+            return utilities.DEFAULT_IMAGE_PATH;
 
-          return require('../assets/img/' + this.product.imgs[0]);
+          return utilities.getImgPath(this.product.imgs[0].path);
       },
       SaveIcon: function(){
           return this.isSave ? 'star' : 'star_border';

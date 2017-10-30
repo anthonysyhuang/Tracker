@@ -109,7 +109,6 @@
                 <label>Name</label>
                 <input type="text" v-model="userUnSave.name" id="change-name">
             </div>
-            
             <p v-if="!editMood">{{ user.quote }}</p>
             <div class="input-box" v-if="editMood">
                 <label>Bio</label>
