@@ -104,12 +104,12 @@
     <section class="main">
         <div class="top-half">
             <img src="../assets/img/p.jpg">
-            <h1 v-if="!editMood">{{ user.name }}</h1>
+            <h1 v-if="!editMood">{{ User.name }}</h1>
             <div class="input-box" v-if="editMood">
                 <label>Name</label>
                 <input type="text" v-model="userUnSave.name" id="change-name">
             </div>
-            <p v-if="!editMood">{{ user.quote }}</p>
+            <p v-if="!editMood">{{ User.quote }}</p>
             <div class="input-box" v-if="editMood">
                 <label>Bio</label>
                 <textarea v-model="userUnSave.quote" id="change-bio" rows="3">
@@ -125,23 +125,23 @@
                     </div>
                     <div class="half">
                         <label>Age</label>
-                        <span>{{ user.age }}</span>
+                        <span>{{ User.age }}</span>
                     </div>
                 </div>
                 <div class="row border-top-solid">
                     <div class="full">
                         <label>E-mail</label>
-                        <span>{{ user.email }}</span>
+                        <span>{{ User.email }}</span>
                     </div>
                 </div>
                 <div class="row border-top-solid">
                     <div class="half border-right-solid">
                     <label>Saved</label>
-                    <span>{{ user.saved.length }}</span>
+                    <span>{{ User.like.length }}</span>
                     </div>
                     <div class="half">
                         <label>Added</label>
-                        <span>{{ user.added.length }}</span>
+                        <span>{{ User.been.length }}</span>
                     </div>
                 </div>
             </div>
@@ -176,8 +176,8 @@ export default {
               hasLeftBtn: false,
               leftBtnText: 'Cancel'
           },
-          user: mock.user,
-          userUnSave: Object.assign({}, mock.user),
+          User: this.$store.state.user,
+          userUnSave: Object.assign({}, this.$store.state.user),
           editMood: false
       }
   },
@@ -193,7 +193,7 @@ export default {
             this.headerData.rightBtnText = 'Edit';
             this.headerData.hasLeftBtn = false;
 
-            this.user = Object.assign({}, this.userUnSave);
+            this.User = Object.assign({}, this.userUnSave);
         }
         else{
             //Edit
@@ -208,12 +208,13 @@ export default {
         this.headerData.rightBtnText = 'Edit';
         this.headerData.hasLeftBtn = false;
 
-        this.userUnSave = Object.assign({}, this.user);
+        this.userUnSave = Object.assign({}, this.User);
     }
   },
   computed:{
+      //User: function(){ return this.$store.state.user; },
       ViewName: function(){ return utilities.VIEWNAME.PROFILE; },
-      Gender: function(){ return this.user.gender == 1 ? 'Male' : 'Female'},
+      Gender: function(){ return this.User.gender == 1 ? 'Male' : 'Female'},
   }
 }
 </script>

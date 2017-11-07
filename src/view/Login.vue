@@ -114,6 +114,7 @@ input[type=submit]{
 <script>
 import login from '@/utilities/login'
 import ErrorCode from '@/utilities/ErrorCode'
+import * as types from '@/store/mutation-types'
 
 export default {
     name: 'Login',
@@ -142,19 +143,21 @@ export default {
     },
     methods: {
         submit: function(event){
-            let error = login.login(this.user.id, this.user.password);
-            if(error === ErrorCode.LOGIN_SUCCESS){
-                this.$router.push({ name: 'home'});
-            }
-            else{
-                this.errorText = error.text;
-            }
+            login.login(this.user.id, this.user.password, this.loginCallback);
         },
         toggleFocus: function(classObject){
             classObject.isFocused = !classObject.isFocused;
             this.errorText = null;
         },
-        
+        loginCallback: function(error, user = {}){
+            if(error === ErrorCode.LOGIN_SUCCESS){
+                // console.log(user);
+                this.$router.push({ name: 'home'});
+            }
+            else{
+                this.errorText = error.text;
+            }
+        }
     } 
 }
 </script>

@@ -7,6 +7,9 @@ import login from '@/utilities/login'
 import List from '@/view/List'
 import Profile from '@/view/Profile'
 import Item from '@/view/Item'
+
+import store from '@/store'
+import * as types from '@/store/mutation-types'
 Vue.use(Router)
 
 function routeGenerator(path, name, component, beforeEnter = null, alias = ''){
@@ -21,9 +24,9 @@ function routeGenerator(path, name, component, beforeEnter = null, alias = ''){
 /********************Before Enter******************************/
 const loginBeforeEnter = function(to, from, next){
   if(login.isLogined())
-    next(homeRoute);
+    return next(homeRoute);
   else
-    next();
+    return next();
 }
 const itemBeforeEnter = function(to, from, next){
   if(!to.params.id){
@@ -52,15 +55,23 @@ const routers =  new Router({
 
 routers.beforeEach((to, from, next) => {
   if(to.matched.length == 0){
-    next(loginRoute);
+    //can't found url
+    console.log("Cant found " + to.path);
+    return next(loginRoute);
   }
 
   if(to.name != loginRoute.name && !login.isLogined()){
     console.log("not login");
-    next(loginRoute);    
+    return next(loginRoute);    
   }
-  else
-    next();
+  else{
+    //initial user data
+    if(login.isLogined() && !store.state.user.isInit){
+      //Init
+      login.logined();
+    }
+    return next();
+  }
 })
 
 export default routers;

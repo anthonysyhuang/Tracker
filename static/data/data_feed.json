@@ -1,0 +1,406 @@
+{
+    "users": [
+      {
+        "id": 0,
+        "name": "Maura Maddox",
+        "username": "user0",
+        "password": "12345",
+        "age": 46,
+        "gender": 0,
+        "email": "user0@gmail.com",
+        "quote": "ex voluptate aliquip sunt ipsum officia quis qui sunt ullamco ullamco consectetur ea proident exercitation irure sint eu laboris est",
+        "profile_img": "user0.jpg",
+        "like": [
+          10,
+          5,
+          6,
+          0,
+          0,
+          5,
+          10,
+          5
+        ],
+        "been": [
+          2,
+          6,
+          6,
+          0,
+          2,
+          0,
+          6,
+          8
+        ]
+      },
+      {
+        "id": 1,
+        "name": "Tillman Barlow",
+        "username": "user1",
+        "password": "12345",
+        "age": 20,
+        "gender": 1,
+        "email": "user1@gmail.com",
+        "quote": "veniam voluptate est aliqua incididunt quis non ad consectetur aute duis eiusmod nisi ex mollit incididunt sunt eu dolore consequat",
+        "profile_img": "user1.jpg",
+        "like": [
+          2,
+          6,
+          5,
+          1,
+          0,
+          8,
+          10,
+          4,
+          6,
+          5
+        ],
+        "been": [
+          10,
+          2,
+          9,
+          4,
+          8
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Alyce Quinn",
+        "username": "user2",
+        "password": "12345",
+        "age": 39,
+        "gender": 0,
+        "email": "user2@gmail.com",
+        "quote": "excepteur minim consequat elit amet commodo laborum minim reprehenderit Lorem exercitation quis et id sit voluptate tempor culpa aliqua et",
+        "profile_img": "user2.jpg",
+        "like": [
+          4,
+          3,
+          8,
+          2,
+          4,
+          5,
+          4,
+          0
+        ],
+        "been": [
+          5,
+          8,
+          8,
+          8,
+          9,
+          6,
+          3,
+          8,
+          7
+        ]
+      },
+      {
+        "id": 3,
+        "name": "Chase Stephenson",
+        "username": "user3",
+        "password": "12345",
+        "age": 32,
+        "gender": 1,
+        "email": "user3@gmail.com",
+        "quote": "veniam cupidatat laboris in sunt pariatur voluptate ipsum pariatur occaecat sunt consequat amet elit voluptate ut dolor ullamco amet dolore",
+        "profile_img": "user3.jpg",
+        "like": [
+          7,
+          9,
+          4,
+          0,
+          7,
+          6
+        ],
+        "been": [
+          5,
+          9,
+          3,
+          5
+        ]
+      },
+      {
+        "id": 4,
+        "name": "Kathy Conrad",
+        "username": "user4",
+        "password": "12345",
+        "age": 46,
+        "gender": 1,
+        "email": "user4@gmail.com",
+        "quote": "in veniam exercitation officia exercitation velit excepteur sint pariatur enim elit ut proident quis incididunt et consectetur laborum enim eu",
+        "profile_img": "user4.jpg",
+        "like": [
+          5,
+          6,
+          1,
+          7,
+          3,
+          3,
+          0,
+          4,
+          6
+        ],
+        "been": [
+          9,
+          2,
+          5,
+          8,
+          7,
+          4,
+          1,
+          1
+        ]
+      }
+    ],
+    "spots": [
+      {
+        "id": 0,
+        "title": "Grimsley",
+        "lat": 37.726481,
+        "lng": -122.426456,
+        "locationNum": 21,
+        "imgs": [
+          {
+            "id": 0,
+            "path": "0.jpg",
+            "tags": [
+              {
+                "id": 0,
+                "tagText": "consectetur",
+                "tagNum": 2
+              },
+              {
+                "id": 1,
+                "tagText": "nulla",
+                "tagNum": 3
+              },
+              {
+                "id": 2,
+                "tagText": "et",
+                "tagNum": 7
+              },
+              {
+                "id": 3,
+                "tagText": "incididunt",
+                "tagNum": 3
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 1,
+        "title": "Limestone",
+        "lat": 37.793104,
+        "lng": -122.478696,
+        "locationNum": 26,
+        "imgs": [
+          {
+            "id": 0,
+            "path": "0.jpg",
+            "tags": [
+              {
+                "id": 0,
+                "tagText": "est",
+                "tagNum": 1
+              }
+            ]
+          },
+          {
+            "id": 1,
+            "path": "1.jpg",
+            "tags": [
+              {
+                "id": 0,
+                "tagText": "labore",
+                "tagNum": 4
+              },
+              {
+                "id": 1,
+                "tagText": "Lorem",
+                "tagNum": 9
+              },
+              {
+                "id": 2,
+                "tagText": "laboris",
+                "tagNum": 7
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "path": "2.jpg",
+            "tags": [
+              {
+                "id": 0,
+                "tagText": "anim",
+                "tagNum": 4
+              },
+              {
+                "id": 1,
+                "tagText": "reprehenderit",
+                "tagNum": 4
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "title": "Glenbrook",
+        "lat": 37.786883,
+        "lng": -122.493973,
+        "locationNum": 14,
+        "imgs": [
+          {
+            "id": 0,
+            "path": "0.jpg",
+            "tags": [
+              {
+                "id": 0,
+                "tagText": "qui",
+                "tagNum": 10
+              },
+              {
+                "id": 1,
+                "tagText": "deserunt",
+                "tagNum": 8
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "title": "Bloomington",
+        "lat": 37.727428,
+        "lng": -122.398416,
+        "locationNum": 12,
+        "imgs": [
+          {
+            "id": 0,
+            "path": "0.jpg",
+            "tags": [
+              {
+                "id": 0,
+                "tagText": "ea",
+                "tagNum": 7
+              },
+              {
+                "id": 1,
+                "tagText": "occaecat",
+                "tagNum": 4
+              },
+              {
+                "id": 2,
+                "tagText": "eu",
+                "tagNum": 2
+              }
+            ]
+          },
+          {
+            "id": 1,
+            "path": "1.jpg",
+            "tags": [
+              {
+                "id": 0,
+                "tagText": "mollit",
+                "tagNum": 8
+              },
+              {
+                "id": 1,
+                "tagText": "laboris",
+                "tagNum": 8
+              },
+              {
+                "id": 2,
+                "tagText": "magna",
+                "tagNum": 1
+              },
+              {
+                "id": 3,
+                "tagText": "ut",
+                "tagNum": 9
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "path": "2.jpg",
+            "tags": [
+              {
+                "id": 0,
+                "tagText": "veniam",
+                "tagNum": 6
+              },
+              {
+                "id": 1,
+                "tagText": "mollit",
+                "tagNum": 4
+              },
+              {
+                "id": 2,
+                "tagText": "culpa",
+                "tagNum": 3
+              },
+              {
+                "id": 3,
+                "tagText": "qui",
+                "tagNum": 7
+              },
+              {
+                "id": 4,
+                "tagText": "incididunt",
+                "tagNum": 10
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "title": "Centerville",
+        "lat": 37.784426,
+        "lng": -122.480673,
+        "locationNum": 23,
+        "imgs": [
+          {
+            "id": 0,
+            "path": "0.jpg",
+            "tags": [
+              {
+                "id": 0,
+                "tagText": "qui",
+                "tagNum": 5
+              }
+            ]
+          },
+          {
+            "id": 1,
+            "path": "1.jpg",
+            "tags": [
+              {
+                "id": 0,
+                "tagText": "reprehenderit",
+                "tagNum": 3
+              },
+              {
+                "id": 1,
+                "tagText": "minim",
+                "tagNum": 9
+              },
+              {
+                "id": 2,
+                "tagText": "occaecat",
+                "tagNum": 5
+              },
+              {
+                "id": 3,
+                "tagText": "non",
+                "tagNum": 3
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }

@@ -65,7 +65,6 @@ export default {
               rightBtnText: 'Add'
           },
           products: mock.products,
-          user: mock.user,
           allMode: 'All',
           savedMode: 'Saved',
           addedMode: 'Added',
@@ -73,6 +72,9 @@ export default {
       }
   },
   computed:{
+      User: function(){
+          return this.$store.state.user;
+      },
       viewName: function(){
           return utilities.VIEWNAME.LIST;
       },
@@ -81,13 +83,13 @@ export default {
             return this.products;
         else if(this.filterMode == this.savedMode){
             return this.products.filter( word => {
-                let set = new Set(this.user.saved);
+                let set = new Set(this.User.like);
                 return set.has(word.id);
             })
         }
         else if(this.filterMode == this.addedMode){
             return this.products.filter( word => {
-                let set = new Set(this.user.added);
+                let set = new Set(this.User.been);
                 return set.has(word.id);
             })
         }
@@ -104,13 +106,13 @@ export default {
           console.log("add");
       },
       isSaved: function(product){
-          return this.user.saved.find( id => { return id == product.id; }) != undefined ? true : false;
+          return this.User.like.find( id => { return id == product.id; }) != undefined ? true : false;
       },
       toggle: function(product){
           [].splice
-          let index = this.user.saved.indexOf(product.id);
-          if(index == -1) this.user.saved.push(product.id);
-          else this.user.saved.splice(index, 1);
+          let index = this.User.like.indexOf(product.id);
+          if(index == -1) this.User.like.push(product.id);
+          else this.User.like.splice(index, 1);
       }
   }
 }
