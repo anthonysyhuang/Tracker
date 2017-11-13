@@ -318,7 +318,7 @@ export default {
           this.$router.push({ name: 'list'});
       },
       getImgPath: function(fileName){
-          return utilities.getImgPath(fileName);
+          return utilities.getStaticImgPath(fileName);
       },
       left: function(){
           

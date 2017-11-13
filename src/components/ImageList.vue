@@ -52,7 +52,7 @@ export default {
     },
     methods:{
         getImgPath: function(fileName){
-            return utilities.getImgPath(fileName);
+            return utilities.getStaticImgPath(fileName);
         },
         onImageSelected: function(img){
             console.log(img.id);

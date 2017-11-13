@@ -18,30 +18,16 @@
     <transition name="fade">
       <router-view></router-view>
     </transition>
-    
   </div>
 </template>
 
 <script>
-import axios from 'axios'
-import * as types from '@/store/mutation-types'
 
 export default {
   name: 'app',
-
-  beforeCreate: function(){
-    let store = this.$store;
-    axios.get('static/data/data_feed.json').then(function(data){
-            console.log(data);
-            console.log(data.data.users[0].id);
-            
-            store.commit(types.DB_USERS_INIT, data.data.users);
-            store.commit(types.DB_SPOTS_INIT, data.data.spots);
-
-    }).catch(function(error){
-
-    });
-  },
+  beforeRouteEnter (to, from, next) {
+    console.log('app before route enter1');
+  }
 }
 </script>
 <style src="./assets/css/theme.css" lang="css"></style>

@@ -8,7 +8,8 @@ export default{
         gender: 1,
         quote: 'Good, better, best. Never let it rest. \'Til your good is better and your better is best.',
         saved: [0, 1, 2],
-        added: [3, 4]
+        added: [3, 4],
+        profile_img: 'p.jpg'
     },
     products: [
         { 

@@ -10,6 +10,7 @@ import Item from '@/view/Item'
 
 import store from '@/store'
 import * as types from '@/store/mutation-types'
+import axios from 'axios'
 Vue.use(Router)
 
 function routeGenerator(path, name, component, beforeEnter = null, alias = ''){
@@ -65,12 +66,27 @@ routers.beforeEach((to, from, next) => {
     return next(loginRoute);    
   }
   else{
-    //initial user data
-    if(login.isLogined() && !store.state.user.isInit){
-      //Init
-      login.logined();
+    //initial data
+    if(!store.state.db_users.isSet || !store.state.db_spots.isSet){
+      console.log('Get DB');
+      axios.get('static/data/data_feed.json').then(function(data){
+        console.log(data);
+        console.log(data.data.users[0].id);
+        
+        store.commit(types.DB_USERS_INIT, data.data.users);
+        store.commit(types.DB_SPOTS_INIT, data.data.spots);
+      
+      }).then(function(){
+        login.checkLogined();
+      }).then(function(){
+        return next();
+      }).catch(function(error){
+      //error
+      });
     }
-    return next();
+    else{
+      return next();
+    }
   }
 })
 

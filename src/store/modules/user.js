@@ -34,7 +34,7 @@ export default {
             state.like = user.like;
             state.been = user.been;
 
-            isInit = true;
+            state.isInit = true;
         }
     },
     actions:{

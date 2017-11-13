@@ -103,7 +103,7 @@
                @onRightBtnClick="onRgBtnClick()" @onLeftBtnClick="onLfBtnClick()"></HeaderNav>
     <section class="main">
         <div class="top-half">
-            <img src="../assets/img/p.jpg">
+            <img src="/static/img/p.jpg">
             <h1 v-if="!editMood">{{ User.name }}</h1>
             <div class="input-box" v-if="editMood">
                 <label>Name</label>
@@ -213,6 +213,7 @@ export default {
   },
   computed:{
       //User: function(){ return this.$store.state.user; },
+      ProfileImg: function(){ return utilities.getStaticImgPath(this.$store.state.profile_img); },
       ViewName: function(){ return utilities.VIEWNAME.PROFILE; },
       Gender: function(){ return this.User.gender == 1 ? 'Male' : 'Female'},
   }

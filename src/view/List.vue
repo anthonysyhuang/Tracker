@@ -7,8 +7,12 @@ ul{
     padding: 0;
     margin: 0;
 }
+ul>a{
+    margin: 20px;
+    display: block;
+    text-decoration: none;
+}
 .ProductCmp{
-    float: left;
 }
 .filter-section{
     padding-top: 10px;

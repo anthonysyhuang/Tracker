@@ -150,8 +150,9 @@ export default {
             this.errorText = null;
         },
         loginCallback: function(error, user = {}){
+                console.log("loginCallback");            
+                console.log(error);            
             if(error === ErrorCode.LOGIN_SUCCESS){
-                // console.log(user);
                 this.$router.push({ name: 'home'});
             }
             else{

@@ -1,6 +1,5 @@
 <style scoped>
 .ProductCmp{
-    margin: 20px;
     position: relative;
 }
 img{
@@ -87,7 +86,8 @@ export default {
           if(this.product.imgs.length == 0)
             return utilities.DEFAULT_IMAGE_PATH;
 
-          return utilities.getImgPath(this.product.imgs[0].path);
+        //return 'static/img/' + this.product.imgs[0].path;
+        return utilities.getStaticImgPath(this.product.imgs[0].path);
       },
       SaveIcon: function(){
           return this.isSave ? 'star' : 'star_border';
