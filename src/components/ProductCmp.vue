@@ -54,15 +54,15 @@ span{
   <div class="ProductCmp">
         <img :src="ImgPath">
         <div>
-            <h2>{{ product.title}}</h2>
+            <h2>{{ spot.title}}</h2>
             <div class="icons-section">
                 <div class="icon-box">
                     <i class="material-icons md-18">location_on</i>
-                    <span>{{ product.locationNum }}</span>
+                    <span>{{ spot.locationNum }}</span>
                 </div>
                 <div class="icon-box">
                     <i class="material-icons md-18">collections</i>
-                    <span>{{ product.locationNum }}</span>
+                    <span>{{ spot.locationNum }}</span>
                 </div>
             </div>
             <div class="saved-section">
@@ -78,16 +78,16 @@ import utilities from '@/utilities/utilities.js'
 export default {
   name: 'ProductCmp',
   props: {
-      product: Object,
+      spot: Object,
       isSave: Boolean,
   },
   computed:{
       ImgPath: function(){
-          if(this.product.imgs.length == 0)
+          if(this.spot.imgs.length == 0)
             return utilities.DEFAULT_IMAGE_PATH;
 
         //return 'static/img/' + this.product.imgs[0].path;
-        return utilities.getStaticImgPath(this.product.imgs[0].path);
+        return utilities.getSpotImgPath(this.spot, this.spot.imgs[0].path);
       },
       SaveIcon: function(){
           return this.isSave ? 'star' : 'star_border';

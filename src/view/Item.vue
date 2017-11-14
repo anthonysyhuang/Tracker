@@ -251,7 +251,6 @@ li>.vote-result{
 <script>
 import HeaderNav from '@/components/HeaderNav.vue'
 import ImageList from '@/components/ImageList.vue'
-import mock from '@/mock/mock.js'
 import utilities from '@/utilities/utilities.js'
 
 export default {
@@ -299,8 +298,7 @@ export default {
           }
       },
       updateData: function(){
-          let obj =  mock.products.find( product =>{ return product.id == this.$route.params.id } );
-        [].forEach
+          let obj =  this.$store.state.db_spots.spots.find( spot =>{ return spot.id == this.$route.params.id } );
           if(obj.imgs){
               obj.imgs.forEach(img => {
                 img.tags.sort(function(a, b){
@@ -318,7 +316,7 @@ export default {
           this.$router.push({ name: 'list'});
       },
       getImgPath: function(fileName){
-          return utilities.getStaticImgPath(fileName);
+          return utilities.getSpotImgPath(this.ItemInfo, fileName);
       },
       left: function(){
           

@@ -158,7 +158,6 @@ import BottomNav from '@/components/BottomNav.vue'
 import HeaderNav from '@/components/HeaderNav.vue'
 import utilities from '@/utilities/utilities.js'
 import login from '@/utilities/login.js'
-import mock from '@/mock/mock.js'
 
 export default {
   name: 'Profile',

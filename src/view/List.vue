@@ -37,8 +37,8 @@ ul>a{
               <a :class="{ 'filter-active': isAcitve(addedMode)}" @click="filterActive(addedMode)">{{ addedMode }}</a>
           </div>
           <ul>
-              <router-link :to="{ name: 'item', params: { id: String(product.id) } }" v-for="product in ProductsList" :key="product.id">
-                  <ProductCmp  :product="product" :isSave="isSaved(product)" @onToggle="toggle(product)"></ProductCmp>
+              <router-link :to="{ name: 'item', params: { id: String(spot.id) } }" v-for="spot in SpotsList" :key="spot.id">
+                  <ProductCmp  :spot="spot" :isSave="isSaved(spot)" @onToggle="toggle(spot)"></ProductCmp>
               </router-link>
               
           </ul>
@@ -51,7 +51,6 @@ import BottomNav from '@/components/BottomNav.vue'
 import HeaderNav from '@/components/HeaderNav.vue'
 import utilities from '@/utilities/utilities'
 import ProductCmp from '@/components/ProductCmp.vue'
-import mock from '@/mock/mock.js'
 
 export default {
   name:'List',
@@ -68,7 +67,7 @@ export default {
               hasRight: true,
               rightBtnText: 'Add'
           },
-          products: mock.products,
+          spots: this.$store.state.db_spots.spots,
           allMode: 'All',
           savedMode: 'Saved',
           addedMode: 'Added',
@@ -82,17 +81,17 @@ export default {
       viewName: function(){
           return utilities.VIEWNAME.LIST;
       },
-      ProductsList: function(){
+      SpotsList: function(){
         if(this.filterMode == this.allMode)
-            return this.products;
+            return this.spots;
         else if(this.filterMode == this.savedMode){
-            return this.products.filter( word => {
+            return this.spots.filter( word => {
                 let set = new Set(this.User.like);
                 return set.has(word.id);
             })
         }
         else if(this.filterMode == this.addedMode){
-            return this.products.filter( word => {
+            return this.spots.filter( word => {
                 let set = new Set(this.User.been);
                 return set.has(word.id);
             })
