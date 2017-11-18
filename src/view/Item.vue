@@ -227,7 +227,7 @@ li>.vote-result{
                     <div class="bot-line" :class="{'bot-line-active': HashTagZone.active || HashTagZone.value}"></div>
                 </div>
                 <li v-for="tag in ItemInfo.imgs[CurrentImgIndex].tags" :key="tag.id">
-                    <span :class="{ 'active': tag.active }" @click="vote(tag)">{{ tag.tagText }}</span>
+                    <span :class="{ 'active': tag.active }" @click="vote(tag)">#{{ tag.tagText }}</span>
                     <div class="vote-result">
                         <div class="bar" :style="{ width: getWidth(tag.tagNum) + '%'}">
                             <span class="vote-num"> {{ tag.tagNum }}</span>
@@ -237,7 +237,7 @@ li>.vote-result{
             </ul>
             </transition>
             <transition name="fade">
-            <ImageList v-show="!VoteMode" :imgs="ItemInfo.imgs" :selected="currentImg" @onImageSelected="onImageChange"></ImageList>
+            <ImageList v-show="!VoteMode" :spot="ItemInfo" :selected="currentImg" @onImageSelected="onImageChange"></ImageList>
             </transition>
             <!-- <div class="map-section">
                 <img src="../assets/img/map.png">
@@ -275,7 +275,6 @@ export default {
                 placeholder: 'Add hashtag here...'
             },
             VoteMode: true,
-            
         }
   },
   methods:{
@@ -313,7 +312,8 @@ export default {
       },
       back: function(){
           console.log('back');
-          this.$router.push({ name: 'list'});
+        //   this.$router.push({ name: 'list'});
+        this.$router.go(-1);
       },
       getImgPath: function(fileName){
           return utilities.getSpotImgPath(this.ItemInfo, fileName);
@@ -341,8 +341,8 @@ export default {
           
           let zone = this.HashTagZone;
           let item = this.ItemInfo;
-          let tagText = '#' + zone.value;
-          let result = item.tags.find( tag => { return tag.tagText == tagText});
+          let tagText = zone.value;
+          let result = item.imgs[this.CurrentImgIndex].tags.find( tag => { return tag.tagText == tagText});
 
           //hashtag exist
           if(result){
@@ -350,8 +350,8 @@ export default {
                 this.vote(result);
           }
           else{
-              item.tags.push({
-              id: item.tags.length,
+              item.imgs[this.CurrentImgIndex].tags.push({
+              id: item.imgs[this.CurrentImgIndex].tags.length,
               tagText: tagText,
               tagNum: 1,
               active: true});

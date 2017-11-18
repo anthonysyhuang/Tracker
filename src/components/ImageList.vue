@@ -30,8 +30,8 @@ img{
 
 <template>
     <ul class="ImageList">
-        <li v-for="img in imgs" :key="img.id" @click="onImageSelected(img)">
-            <img :src="getImgPath(img.path)" :class="{ 'active': selected.id == img.id}">
+        <li v-for="img in spot.imgs" :key="img.id" @click="onImageSelected(img)">
+            <img :src="getImgPath(img)" :class="{ 'active': selected.id == img.id}">
         </li>
     </ul>
 </template>
@@ -42,7 +42,7 @@ import utilities from '@/utilities/utilities'
 export default {
     name: 'ImageList',
     props: {
-        imgs: Array,
+        spot: Object,
         selected: Object,
     },
     data(){
@@ -51,8 +51,8 @@ export default {
         }
     },
     methods:{
-        getImgPath: function(fileName){
-            return utilities.getStaticImgPath(fileName);
+        getImgPath: function(img){
+            return utilities.getSpotImgPath(this.spot, img.path);
         },
         onImageSelected: function(img){
             console.log(img.id);

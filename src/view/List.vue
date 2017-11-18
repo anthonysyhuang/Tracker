@@ -112,7 +112,6 @@ export default {
           return this.User.like.find( id => { return id == product.id; }) != undefined ? true : false;
       },
       toggle: function(product){
-          [].splice
           let index = this.User.like.indexOf(product.id);
           if(index == -1) this.User.like.push(product.id);
           else this.User.like.splice(index, 1);
