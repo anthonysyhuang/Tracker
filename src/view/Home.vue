@@ -63,19 +63,99 @@
     height: 100%;
     object-fit: cover;
 }
+.add-pin{
+    position: absolute;
+    height: calc(100vh - 3em);
+    background-color: #efefef;
+    width: 100%;
+    top: 3em;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+}
+.add-pin>input{
+    border: none;
+    display: block;
+    padding: 0;
+    height: 70px;
+    line-height: 3em;
+    font-size: 2em;
+    outline: none;
+    padding-left: 10px;
+    margin: 20px;
+    box-shadow: 0 0 5px 0px #80808045;
+}
+.img-upload{
+    background-color: white;
+    margin: 20px;
+    box-shadow: 0 0 5px 0px #80808045;
+    overflow: hidden;
+}
+.img-upload>div{
+    float: left;
+    width: 33.3333%;
+    padding-top: 33.3333%;
+    display: block;
+    position: relative;
+}
+.img-upload img{
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    object-fit: cover;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.add-img{
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    object-fit: cover;
+    border: solid 1px #eaeaea;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #c8c8c8;
+}
+.add-img-input{
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    position: absolute;
+}
 </style>
 
 <template>
     <div>
         <HeaderNav :title="headerData.title" :hasLeftBtn="headerData.hasLeft"
                    :titleAlign="headerData.titleAlign" :hasRightBtn="headerData.hasRight"
-                   @onLeftBtnClick="goBack()"></HeaderNav>
+                   :rightBtnText="headerData.rightBtnText" :leftBtnText="headerData.leftBtnText"
+                   @onLeftBtnClick="onLeftBtnClick()" @onRightBtnClick="onRightBtnClick()"></HeaderNav>
         <section class="Home">
             <div id="map" ref="map">
             </div>
             <!-- <img src="../assets/img/map.png"> -->
         </section>
         <BottomNav :parent="viewName"></BottomNav>
+        <section v-if="editObject.on" class="add-pin">
+            <input type="text" placeholder="Title" v-model="editObject.title">
+            <div class="img-upload">
+                <div v-for="img in editObject.imgs" :key="img">
+                    <img :src="img">
+                </div>
+                <div>
+                    <div class="add-img">
+                        <input type="file" accept=".png, .jpg, .jpeg" class="add-img-input"
+                        multiple="multiple" @change="onAddImage($event)">
+                        <i class="material-icons">add</i>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 </template>
 
@@ -83,6 +163,7 @@
 import BottomNav from '@/components/BottomNav.vue'
 import utilities from '@/utilities/utilities.js'
 import HeaderNav from '@/components/HeaderNav.vue'
+import * as types from '@/store/mutation-types.js'
 
 export default {
   name: 'Home',
@@ -99,11 +180,21 @@ export default {
               titleAlign: HeaderNav.CONFIG.CENTER
           },
           map: null,
-          spots: this.$store.state.db_spots.spots
+          spots: this.$store.state.db_spots.spots,
+          markers: [],
+          editObject:{
+              on: false,
+              title: '',
+              lat: 0,
+              lng: 0,
+              imgs: []
+          }
       }
   },
   mounted: function(){
       console.log(google);
+      let vue = this;
+
       this.map = new google.maps.Map(this.$refs.map, {
         center: {
                     lat: 37.786235,
@@ -116,27 +207,92 @@ export default {
       this.map.addListener('click', function(e){
           console.log('Map onClick');
           console.log(e.latLng.lat());
-      })
+          vue.addPin(e.latLng.lat(), e.latLng.lng());
+      });
 
-      for(let i = 0; i < this.spots.length; i++){
-          console.log({lat: this.spots[i].lat, lng: this.spots[i].lng});
-          console.log(this.spots[i].id);
-          let spot = this.spots[i];
-          let vue = this;
-          let marker = new Marker(spot, function(){
-              console.log(spot.id);
-              vue.$router.push({ name: 'item', params: { id: String(spot.id) } });
-          });
-          marker.setMap(this.map);      
-      }
-
+        for(let i = this.markers.length; i < this.spots.length; i++){
+            this.addMarker(this.spots[i]);
+        }
   },
   computed:{
       viewName: function(){ return utilities.VIEWNAME.HOME; }
   },
+  watch:{
+      spots: {
+          handler: function(val, oldVal){
+            console.log('watch spots: ' + this.spots.length);
+            console.log(val);
+            console.log(oldVal);
+            for(let i = this.markers.length; i < this.spots.length; i++){
+                this.addMarker(this.spots[i]);
+            }
+          }
+      },
+      editObject: {
+        deep: true,
+        handler: function(){
+            if(this.editObject.on){
+                this.headerData = {
+                title: "Add Spot",
+                hasRight: true,
+                hasLeft: true,
+                rightBtnText: 'Add',
+                leftBtnText: 'Cancel',
+                titleAlign: HeaderNav.CONFIG.CENTER
+                }
+            }
+            else{
+                this.headerData = {
+                    title: "Tracker",
+                    hasRight: false,
+                    hasLeft: false,
+                    titleAlign: HeaderNav.CONFIG.CENTER
+                }
+            }
+        }
+      }
+  },
   methods:{
-      goBack: function(){
-          console.log("back");
+      onRightBtnClick: function(){
+          console.log("onRightBtnClick");
+          //add to spots
+          this.$store.commit(types.ADD_SPOT_ACTION, this.editObject);
+          this.editObject.on = false;
+      },
+      onLeftBtnClick: function(){
+          console.log("onLeftBtnClick");
+          this.editObject.on = false;
+      },
+      addPin: function(lat, lng){
+          this.editObject.title = '';
+          this.editObject.imgs = [];
+          this.editObject.on = true;
+          this.editObject.lat = lat;
+          this.editObject.lng = lng;
+      },
+      addImage: function(e){
+          console.log("addImage");
+          this.editObject.imgs.push(e.target.result);
+      },
+      onAddImage: function(e){
+          console.log(e.target);
+          let vue = this;
+          for(let i = 0; i < e.target.files.length; i++){
+              let reader = new FileReader();
+              reader.onload = this.addImage;
+              reader.readAsDataURL(e.target.files[i]);
+          }
+      },
+      addMarker: function(spot){
+        //console.log({lat: this.spots[i].lat, lng: this.spots[i].lng});
+        console.log("addMarker" + spot.id);
+        //let spot = this.spots[i];
+        let vue = this;
+        let marker = new Marker(spot, function(){
+            vue.$router.push({ name: 'item', params: { id: String(spot.id) } });
+        });
+        marker.setMap(this.map);
+        this.markers.push(marker);
       }
   }
 }
@@ -145,7 +301,6 @@ function Marker(spot, onClick){
     this.spot = spot;
     this.lat = spot.lat;
     this.lng = spot.lng;
-    console.log(onClick);
     this.onClick = onClick;
     this.pos = new google.maps.LatLng(this.lat,this.lng);
 }
