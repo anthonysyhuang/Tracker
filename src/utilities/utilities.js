@@ -9,10 +9,13 @@ export default{
         return require('../assets/img/' + filepath);
     },
     getStaticImgPath: function(filepath){
+        // return 'static/img/' + filepath;
         return 'static/img/' + filepath;
     },
     getSpotImgPath: function(spot, filename){
         console.log(spot.id);
-        return 'static/img/' + spot.id + "_" + filename;
+        // return 'static/img/' + spot.id + "_" + filename;
+        return filename;
+        
     }
 }

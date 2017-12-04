@@ -204,12 +204,21 @@ export default {
         clickableIcons: false,
       });
       
+      let timmer = null;
+
       this.map.addListener('click', function(e){
-          console.log('Map onClick');
-          console.log(e.latLng.lat());
-          vue.addPin(e.latLng.lat(), e.latLng.lng());
+            console.log('Map onClick');
+            console.log(e.latLng.lat());
+            timmer = setTimeout(function() {
+                vue.addPin(e.latLng.lat(), e.latLng.lng());
+            }, 200);
       });
 
+        this.map.addListener('dblclick', function(e){
+
+            console.log('dblclick fired');
+            clearTimeout(timmer);
+        })
         for(let i = this.markers.length; i < this.spots.length; i++){
             this.addMarker(this.spots[i]);
         }

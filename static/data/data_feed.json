@@ -161,7 +161,7 @@
         "imgs": [
           {
             "id": 0,
-            "path": "0.jpg",
+            "path": "static/img/0_0.jpg",
             "tags": [
               {
                 "id": 0,
@@ -196,7 +196,7 @@
         "imgs": [
           {
             "id": 0,
-            "path": "0.jpg",
+            "path": "static/img/1_0.jpg",
             "tags": [
               {
                 "id": 0,
@@ -207,7 +207,7 @@
           },
           {
             "id": 1,
-            "path": "1.jpg",
+            "path": "1_1.jpg",
             "tags": [
               {
                 "id": 0,
@@ -228,7 +228,7 @@
           },
           {
             "id": 2,
-            "path": "2.jpg",
+            "path": "static/img/1_2.jpg",
             "tags": [
               {
                 "id": 0,
@@ -253,7 +253,7 @@
         "imgs": [
           {
             "id": 0,
-            "path": "0.jpg",
+            "path": "static/img/2_0.jpg",
             "tags": [
               {
                 "id": 0,
@@ -278,7 +278,7 @@
         "imgs": [
           {
             "id": 0,
-            "path": "0.jpg",
+            "path": "static/img/3_0.jpg",
             "tags": [
               {
                 "id": 0,
@@ -299,7 +299,7 @@
           },
           {
             "id": 1,
-            "path": "1.jpg",
+            "path": "static/img/3_1.jpg",
             "tags": [
               {
                 "id": 0,
@@ -325,7 +325,7 @@
           },
           {
             "id": 2,
-            "path": "2.jpg",
+            "path": "static/img/3_2.jpg",
             "tags": [
               {
                 "id": 0,
@@ -365,7 +365,7 @@
         "imgs": [
           {
             "id": 0,
-            "path": "0.jpg",
+            "path": "static/img/4_0.jpg",
             "tags": [
               {
                 "id": 0,
@@ -376,7 +376,7 @@
           },
           {
             "id": 1,
-            "path": "1.jpg",
+            "path": "static/img/4_1.jpg",
             "tags": [
               {
                 "id": 0,

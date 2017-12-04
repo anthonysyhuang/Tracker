@@ -103,7 +103,7 @@
                @onRightBtnClick="onRgBtnClick()" @onLeftBtnClick="onLfBtnClick()"></HeaderNav>
     <section class="main">
         <div class="top-half">
-            <img src="/static/img/p.jpg">
+            <img src="static/img/p.jpg">
             <h1 v-if="!editMood">{{ User.name }}</h1>
             <div class="input-box" v-if="editMood">
                 <label>Name</label>
