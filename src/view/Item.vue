@@ -3,6 +3,8 @@
     height: calc(100vh - 3em);
     overflow: auto;
     position: relative;
+    width: 100vw;
+    overflow: hidden;
 }
 img{
     display: block;
@@ -81,10 +83,6 @@ li>.vote-result{
     top: 50%;
     transform: translate(0, -50%);
     font-size: 0.7em;
-}
-.map-section{
-    height: 50vh;
-    overflow: auto;
 }
 .imgs-btn{
     position: absolute;
@@ -190,10 +188,27 @@ li>.vote-result{
     padding: 5px;
 }
 .fade-enter-active, .fade-leave-active {
-  transition: opacity .5s
+  transition: opacity .5s;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active in below version 2.1.8 */ {
-  opacity: 0
+  opacity: 0;
+}
+.flip-enter-active, .flip-leave-active {
+  transition: .5s;
+}
+.flip-enter, .flip-leave-to /* .fade-leave-active in below version 2.1.8 */ {
+    transform: rotateY(180deg);
+    opacity: 0;
+}
+.map-section{
+    height: calc(100vh - 3em);
+    width: 100vw;
+    overflow: hidden;
+    position: absolute;
+    bottom: 0;
+}
+.map{
+    height: 100%;
 }
 </style>
 
@@ -201,8 +216,9 @@ li>.vote-result{
     <section>
         <HeaderNav :hasLeftBtn="headerData.hasLeftBtn" :leftBtnText="headerData.leftBtnText"
                    :title="headerTitle" :rightBtnText="headerData.rightBtnText"
-                   :hasRightBtn="headerData.hasRightBtn" @onLeftBtnClick="back()"></HeaderNav>
-        <section class="main">
+                   :hasRightBtn="headerData.hasRightBtn" @onLeftBtnClick="back()" @onRightBtnClick="toggleMap()"></HeaderNav>
+        <transition name="flip">
+        <section class="main" v-show="!MapMode">
             <div class="img-section">
                 <div class="imgs" :style="{ transform: 'translate('+ slidePercentage +'%,0)'}">
                     <img v-for="img in ItemInfo.imgs" :src="getImgPath(img.path)" :key="img.id">
@@ -237,12 +253,15 @@ li>.vote-result{
             </ul>
             </transition>
             <transition name="fade">
-            <ImageList v-show="!VoteMode" :spot="ItemInfo" :selected="currentImg" @onImageSelected="onImageChange"></ImageList>
+                <ImageList v-show="!VoteMode" :spot="ItemInfo" :selected="currentImg" @onImageSelected="onImageChange"></ImageList>
             </transition>
-            <!-- <div class="map-section">
-                <img src="../assets/img/map.png">
-            </div> -->
         </section>
+        </transition>
+        <transition name="flip" v-on:after-enter="afterEnterMap">
+            <div v-show="MapMode" class="map-section">
+                <div class="map" ref="map"></div>
+            </div>
+        </transition>
     </section>
   
 </template>
@@ -275,7 +294,29 @@ export default {
                 placeholder: 'Add hashtag here...'
             },
             VoteMode: true,
+            MapMode: false,
+            map: null
         }
+  },
+  mounted: function(){
+        console.log(google);
+        let vue = this;
+
+        this.map = new google.maps.Map(this.$refs.map, {
+            center: {
+                        lat: vue.ItemInfo.lat,
+                        lng: vue.ItemInfo.lng
+                    },
+            zoom: 12,
+            mapTypeControl: false,
+            streetViewControl: false,
+            clickableIcons: false,
+        });
+        let marker = new google.maps.Marker({
+        position: {lat: vue.ItemInfo.lat, lng: vue.ItemInfo.lng},
+        map: vue.map,
+        title: 'mark'
+        });
   },
   methods:{
       getWidth: function(num){
@@ -368,6 +409,15 @@ export default {
       },
       onModeChange: function(){
           this.VoteMode = !this.VoteMode;
+      },
+      toggleMap: function(){
+          this.MapMode = !this.MapMode;
+      },
+      afterEnterMap: function(){
+          console.log('transition done');
+          let center = this.map.getCenter();
+          google.maps.event.trigger(this.$refs.map, 'resize');
+          this.map.setCenter(center);
       }
   },
   computed:{

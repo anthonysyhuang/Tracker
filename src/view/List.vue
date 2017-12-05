@@ -33,8 +33,8 @@ ul>a{
       <section class="main">
           <div class="filter-section">
               <a :class="{ 'filter-active': isAcitve(allMode)}" @click="filterActive(allMode)">{{ allMode }}</a>|
-              <a :class="{ 'filter-active': isAcitve(savedMode)}" @click="filterActive(savedMode)">{{ savedMode }}</a>|
-              <a :class="{ 'filter-active': isAcitve(addedMode)}" @click="filterActive(addedMode)">{{ addedMode }}</a>
+              <a :class="{ 'filter-active': isAcitve(savedMode)}" @click="filterActive(savedMode)">{{ savedMode }}</a>
+              <!-- <a :class="{ 'filter-active': isAcitve(addedMode)}" @click="filterActive(addedMode)">{{ addedMode }}</a> -->
           </div>
           <ul>
               <router-link :to="{ name: 'item', params: { id: String(spot.id) } }" v-for="spot in SpotsList" :key="spot.id">
@@ -64,14 +64,14 @@ export default {
           headerData:{
               title: 'Lists',
               titleAlign: HeaderNav.CONFIG.CENTER,
-              hasRight: true,
+              hasRight: false,
               rightBtnText: 'Add'
           },
           spots: this.$store.state.db_spots.spots,
-          allMode: 'All',
-          savedMode: 'Saved',
+          allMode: 'Explore',
+          savedMode: 'Like',
           addedMode: 'Added',
-          filterMode: 'All',
+          filterMode: 'Explore',
       }
   },
   computed:{

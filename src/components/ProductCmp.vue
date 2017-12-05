@@ -30,7 +30,7 @@ span{
 .icon-box{
     display: flex;
     padding: 0 3px;
-    color: #091221;
+    color: white;
 }
 .saved-section{
     position: absolute;
@@ -56,13 +56,13 @@ span{
         <div>
             <h2>{{ spot.title}}</h2>
             <div class="icons-section">
-                <div class="icon-box">
+                <!-- <div class="icon-box">
                     <i class="material-icons md-18">location_on</i>
                     <span>{{ spot.locationNum }}</span>
-                </div>
+                </div> -->
                 <div class="icon-box">
                     <i class="material-icons md-18">collections</i>
-                    <span>{{ spot.locationNum }}</span>
+                    <span>{{ spot.imgs.length }}</span>
                 </div>
             </div>
             <div class="saved-section">

@@ -197,10 +197,12 @@ export default {
 
       this.map = new google.maps.Map(this.$refs.map, {
         center: {
-                    lat: 37.786235,
-                    lng: -122.399405
+                    lat: 37.72937115,
+                    lng: -122.44180298
                 },
         zoom: 12,
+        mapTypeControl: false,
+        streetViewControl: false,
         clickableIcons: false,
       });
       
@@ -295,6 +297,7 @@ export default {
       addMarker: function(spot){
         //console.log({lat: this.spots[i].lat, lng: this.spots[i].lng});
         console.log("addMarker" + spot.id);
+        //debugger;
         //let spot = this.spots[i];
         let vue = this;
         let marker = new Marker(spot, function(){
