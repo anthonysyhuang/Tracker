@@ -90,7 +90,7 @@ export default {
             //add img to spot
             let imgs = this.spot.imgs;
             let id = imgs[imgs.length-1].id + 1;
-            this.spot.imgs.push({id: id, path: file.target.result, tags: []});
+            this.spot.imgs.unshift({id: id, path: file.target.result, tags: []});
         },
         onAddImage: function(e){
             

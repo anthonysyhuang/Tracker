@@ -307,7 +307,7 @@ export default {
                         lat: vue.ItemInfo.lat,
                         lng: vue.ItemInfo.lng
                     },
-            zoom: 12,
+            zoom: 10,
             mapTypeControl: false,
             streetViewControl: false,
             clickableIcons: false,

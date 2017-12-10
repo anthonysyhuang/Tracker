@@ -85,8 +85,8 @@ export default {
         if(this.filterMode == this.allMode)
             return this.spots;
         else if(this.filterMode == this.savedMode){
+            let set = new Set(this.User.like);
             return this.spots.filter( word => {
-                let set = new Set(this.User.like);
                 return set.has(word.id);
             })
         }

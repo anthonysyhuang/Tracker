@@ -2,6 +2,8 @@
     .main{
         height: calc(100vh - 6em);
         overflow: auto;
+        display: flex;
+        flex-direction: column;
     }
     .top-half{
         display: flex;
@@ -57,6 +59,7 @@
     .bottom-half{
         background-color: #f3f3f3;
         padding: 10px 0;
+        flex: 1;
     }
     .card{
         margin: 15px 10px;
@@ -104,7 +107,7 @@
                @onRightBtnClick="onRgBtnClick()" @onLeftBtnClick="onLfBtnClick()"></HeaderNav>
     <section class="main">
         <div class="top-half">
-            <img src="static/img/p.jpg">
+            <img :src=' "static/img/" + User.profile_img'>
             <h1 v-if="!editMood">{{ User.name }}</h1>
             <div class="input-box" v-if="editMood">
                 <label>Name</label>
@@ -118,14 +121,14 @@
             </div>
         </div>
         <div class="bottom-half">
-            <div class="card">
-                <div class="row border-top-solid">
-                    <div class="half border-right-solid">
-                    <label>Like</label>
-                    <span>{{ User.like.length }}</span>
+            <!-- <div class="card">
+                <div class="row">
+                    <div class="full border-right-solid">
+                        <label>Like</label>
+                        <span>{{ User.like.length }}</span>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="card">
                 <div class="row">
                     <div class="half border-right-solid">
@@ -144,7 +147,7 @@
                     </div>
                 </div>
             </div>
-            <section class="logout">
+            <section class="logout" v-if="!editMood">
                 <button @click="logout()">Logout</button>
             </section>
         </div>
@@ -207,6 +210,13 @@ export default {
         this.headerData.hasLeftBtn = false;
 
         this.userUnSave = Object.assign({}, this.User);
+    },
+    dateTimeformate: function(){
+        let date = new Date();
+
+        let year = data.getYear();
+
+        return year;
     }
   },
   computed:{

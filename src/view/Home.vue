@@ -197,10 +197,10 @@ export default {
 
       this.map = new google.maps.Map(this.$refs.map, {
         center: {
-                    lat: 37.72937115,
-                    lng: -122.44180298
+                    lat: 36.88313565,
+                    lng: -119.58837904
                 },
-        zoom: 12,
+        zoom: 6,
         mapTypeControl: false,
         streetViewControl: false,
         clickableIcons: false,
