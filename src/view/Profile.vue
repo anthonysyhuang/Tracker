@@ -36,9 +36,11 @@
         width: 50%;
         float: left;
         padding: 5px;
+        background-color: white;
     }
     .full{
         padding: 5px;
+        background-color: white;        
     }
     label,
     span{
@@ -54,12 +56,11 @@
     }
     .bottom-half{
         background-color: #f3f3f3;
-        padding: 30px 0;
+        padding: 10px 0;
     }
     .card{
-        background-color: white;
-        margin: auto;
-        box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.2);
+        margin: 15px 10px;
+        box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.07);
     }
     .logout{
         padding-top: 20px;
@@ -118,6 +119,14 @@
         </div>
         <div class="bottom-half">
             <div class="card">
+                <div class="row border-top-solid">
+                    <div class="half border-right-solid">
+                    <label>Like</label>
+                    <span>{{ User.like.length }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
                 <div class="row">
                     <div class="half border-right-solid">
                         <label>Gender</label>
@@ -132,16 +141,6 @@
                     <div class="full">
                         <label>E-mail</label>
                         <span>{{ User.email }}</span>
-                    </div>
-                </div>
-                <div class="row border-top-solid">
-                    <div class="half border-right-solid">
-                    <label>Saved</label>
-                    <span>{{ User.like.length }}</span>
-                    </div>
-                    <div class="half">
-                        <label>Added</label>
-                        <span>{{ User.been.length }}</span>
                     </div>
                 </div>
             </div>
