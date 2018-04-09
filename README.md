@@ -1,7 +1,19 @@
 # tracker
 
-> Project for WNM617
+Tracker is a prototype of single page application, it allow users to share and find interesting spots base on location.
+User could easily add a spot on map with images and hash tags, and share the spot with others in the community.
 
+## Skill Used
+* vue.js
+* webpack
+* node.js
+* google map api
+
+## Screenshot
+
+
+## Unfinished Tasks
+1. 
 ## Build Setup
 
 ``` bash
