@@ -10,10 +10,14 @@ User could easily add a spot on map with images and hash tags, and share the spo
 * google map api
 
 ## Screenshot
+<img src=screenshot/6.png width="250"/><img src=screenshot/1.png width="250"/><img src=screenshot/4.png width="250"/><img src=screenshot/3.png width="250"/><img src=screenshot/2.png width="250"/><img src=screenshot/5.png width="250"/>
+
+## Next Step
+I currently working on the back end part for this project. Plan to make a restful api for front end to get all data from database.
+
+Tools: node.js | express | mongoDB
 
 
-## Unfinished Tasks
-1. 
 ## Build Setup
 
 ``` bash
@@ -29,5 +33,3 @@ npm run build
 # build for production and view the bundle analyzer report
 npm run build --report
 ```
-
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
